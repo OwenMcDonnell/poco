@@ -63,66 +63,40 @@ BinaryReader& BinaryReader::operator >> (char& value)
 }
 
 
-BinaryReader& BinaryReader::operator >> (unsigned char& value)
+BinaryReader& BinaryReader::operator >> (Int8& value)
 {
 	return read(value, false);
 }
 
 
-BinaryReader& BinaryReader::operator >> (signed char& value)
+BinaryReader& BinaryReader::operator >> (UInt8& value)
 {
 	return read(value, false);
 }
 
 
-BinaryReader& BinaryReader::operator >> (short& value)
+BinaryReader& BinaryReader::operator >> (Int16& value)
 {
 	return read(value, _flipBytes);
 }
 
 
-BinaryReader& BinaryReader::operator >> (unsigned short& value)
+BinaryReader& BinaryReader::operator >> (UInt16& value)
 {
 	return read(value, _flipBytes);
 }
 
 
-BinaryReader& BinaryReader::operator >> (int& value)
+BinaryReader& BinaryReader::operator >> (Int32& value)
 {
 	return read(value, _flipBytes);
 }
 
 
-BinaryReader& BinaryReader::operator >> (unsigned int& value)
+BinaryReader& BinaryReader::operator >> (UInt32& value)
 {
 	return read(value, _flipBytes);
 }
-
-
-#ifndef POCO_LONG_IS_64_BIT
-
-
-BinaryReader& BinaryReader::operator >> (long& value)
-{
-#if defined(POCO_LONG_IS_64_BIT)
-	return read((Int64&) value, _flipBytes);
-#else
-	return read((Int32&) value, _flipBytes);
-#endif
-}
-
-
-BinaryReader& BinaryReader::operator >> (unsigned long& value)
-{
-#if defined(POCO_LONG_IS_64_BIT)
-	return read((UInt64&) value, _flipBytes);
-#else
-	return read((UInt32&) value, _flipBytes);
-#endif
-}
-
-
-#endif // POCO_LONG_IS_64_BIT
 
 
 BinaryReader& BinaryReader::operator >> (float& value)

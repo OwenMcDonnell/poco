@@ -63,66 +63,40 @@ BinaryWriter& BinaryWriter::operator << (char value)
 }
 
 
-BinaryWriter& BinaryWriter::operator << (unsigned char value)
+BinaryWriter& BinaryWriter::operator << (Int8 value)
 {
 	return write(value, false);
 }
 
 
-BinaryWriter& BinaryWriter::operator << (signed char value)
+BinaryWriter& BinaryWriter::operator << (UInt8 value)
 {
 	return write(value, false);
 }
 
 
-BinaryWriter& BinaryWriter::operator << (short value)
+BinaryWriter& BinaryWriter::operator << (Int16 value)
 {
 	return write(value, _flipBytes);
 }
 
 
-BinaryWriter& BinaryWriter::operator << (unsigned short value)
+BinaryWriter& BinaryWriter::operator << (UInt16 value)
 {
 	return write(value, _flipBytes);
 }
 
 
-BinaryWriter& BinaryWriter::operator << (int value)
+BinaryWriter& BinaryWriter::operator << (Int32 value)
 {
 	return write(value, _flipBytes);
 }
 
 
-BinaryWriter& BinaryWriter::operator << (unsigned int value)
+BinaryWriter& BinaryWriter::operator << (UInt32 value)
 {
 	return write(value, _flipBytes);
 }
-
-
-#ifndef POCO_LONG_IS_64_BIT
-
-
-BinaryWriter& BinaryWriter::operator << (long value)
-{
-#if defined(POCO_LONG_IS_64_BIT)
-	return write((Int64) value, _flipBytes);
-#else
-	return write((Int32) value, _flipBytes);
-#endif
-}
-
-
-BinaryWriter& BinaryWriter::operator << (unsigned long value)
-{
-#if defined(POCO_LONG_IS_64_BIT)
-	return write((UInt64) value, _flipBytes);
-#else
-	return write((UInt32) value, _flipBytes);
-#endif
-}
-
-
-#endif // POCO_LONG_IS_64_BIT
 
 
 BinaryWriter& BinaryWriter::operator << (float value)

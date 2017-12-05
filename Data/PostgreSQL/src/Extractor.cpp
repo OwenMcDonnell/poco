@@ -175,46 +175,6 @@ bool Extractor::extract(std::size_t pos, Poco::UInt64& val)
 }
 
 
-#ifndef POCO_LONG_IS_64_BIT
-bool Extractor::extract(std::size_t pos, long& val)
-{
-	OutputParameter outputParameter = extractPreamble(pos);
-
-	Poco::Int64 tempVal;
-
-	if	(	isColumnNull(outputParameter)
-		 || ! Poco::NumberParser::tryParse64(outputParameter.pData(), tempVal)
-		)
-	{
-		return false;
-	}
-
-	val = tempVal;
-
-	return true;
-}
-
-
-bool Extractor::extract(std::size_t pos, unsigned long& val)
-{
-	OutputParameter outputParameter = extractPreamble(pos);
-
-	Poco::UInt64 tempVal;
-
-	if	(	isColumnNull(outputParameter)
-		 || ! Poco::NumberParser::tryParseUnsigned64(outputParameter.pData(), tempVal)
-		)
-	{
-		return false;
-	}
-
-	val = tempVal;
-
-	return true;
-}
-#endif
-
-
 bool Extractor::extract(std::size_t pos, bool& val)
 {
 	OutputParameter outputParameter = extractPreamble(pos);

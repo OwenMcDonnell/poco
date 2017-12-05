@@ -1194,186 +1194,6 @@ void VarTest::testString()
 }
 
 
-void VarTest::testLong()
-{
-#ifndef POCO_LONG_IS_64_BIT
-	long src = 32;
-	Var a1 = src;
-
-	assert (a1.type() == typeid(long));
-
-	std::string s1;
-	Poco::Int8 s2;
-	Poco::Int16 s3;
-	Poco::Int32 s4;
-	Poco::Int64 s5;
-	Poco::UInt8 s6;
-	Poco::UInt16 s7;
-	Poco::UInt32 s8;
-	Poco::UInt64 s9;
-	float s10;
-	double s11;
-	bool s12;
-	char s13;
-	a1.convert(s1);
-	a1.convert(s2);
-	a1.convert(s3);
-	a1.convert(s4);
-	a1.convert(s5);
-	a1.convert(s6);
-	a1.convert(s7);
-	a1.convert(s8);
-	a1.convert(s9);
-	a1.convert(s10);
-	a1.convert(s11);
-	a1.convert(s12);
-	a1.convert(s13);
-	long s14;
-	unsigned long s15;
-	a1.convert(s14);
-	a1.convert(s15);
-	assert (s14 == 32);
-	assert (s15 == 32);
-	assert (s1 == "32");
-	assert (s2 == 32);
-	assert (s3 == 32);
-	assert (s4 == 32);
-	assert (s5 == 32);
-	assert (s6 == 32);
-	assert (s7 == 32);
-	assert (s8 == 32);
-	assert (s9 == 32);
-	assert (s10 == 32.0f);
-	assert (s11 == 32.0);
-	assert (s12);
-	assert (s13 == ' ');
-	Var a2(a1);
-	std::string t2;
-	a2.convert(t2);
-	assert (s1 == t2);
-
-	long value = a1.extract<long>();
-	assert (value == 32);
-
-	try
-	{
-		Int16 value2; value2 = a1.extract<Int16>();
-		fail("bad cast - must throw");
-	}
-	catch (Poco::BadCastException&)
-	{
-	}
-
-	Var a3 = a1 + 1;
-	assert (a3 == 33);
-	a3 = a1 - 1;
-	assert (a3 == 31);
-	a3 += 1;
-	assert (a3 == 32);
-	a3 -= 1;
-	assert (a3 == 31);
-	a3 = a1 / 2;
-	assert (a3 == 16);
-	a3 = a1 * 2;
-	assert (a3 == 64);
-	a3 /= 2;
-	assert (a3 == 32);
-	a3 *= 2;
-	assert (a3 == 64);
-#endif // POCO_LONG_IS_64_BIT
-}
-
-
-void VarTest::testULong()
-{
-#ifndef POCO_LONG_IS_64_BIT
-	unsigned long src = 32;
-	Var a1 = src;
-
-	assert (a1.type() == typeid(unsigned long));
-
-	std::string s1;
-	Poco::Int8 s2;
-	Poco::Int16 s3;
-	Poco::Int32 s4;
-	Poco::Int64 s5;
-	Poco::UInt8 s6;
-	Poco::UInt16 s7;
-	Poco::UInt32 s8;
-	Poco::UInt64 s9;
-	float s10;
-	double s11;
-	bool s12;
-	char s13;
-	a1.convert(s1);
-	a1.convert(s2);
-	a1.convert(s3);
-	a1.convert(s4);
-	a1.convert(s5);
-	a1.convert(s6);
-	a1.convert(s7);
-	a1.convert(s8);
-	a1.convert(s9);
-	a1.convert(s10);
-	a1.convert(s11);
-	a1.convert(s12);
-	a1.convert(s13);
-	long s14;
-	unsigned long s15;
-	a1.convert(s14);
-	a1.convert(s15);
-	assert (s14 == 32);
-	assert (s15 == 32);
-	assert (s1 == "32");
-	assert (s2 == 32);
-	assert (s3 == 32);
-	assert (s4 == 32);
-	assert (s5 == 32);
-	assert (s6 == 32);
-	assert (s7 == 32);
-	assert (s8 == 32);
-	assert (s9 == 32);
-	assert (s10 == 32.0f);
-	assert (s11 == 32.0);
-	assert (s12);
-	assert (s13 == ' ');
-	Var a2(a1);
-	std::string t2;
-	a2.convert(t2);
-	assert (s1 == t2);
-
-	unsigned long value = a1.extract<unsigned long>();
-	assert (value == 32);
-
-	try
-	{
-		Int16 value2; value2 = a1.extract<Int16>();
-		fail("bad cast - must throw");
-	}
-	catch (Poco::BadCastException&)
-	{
-	}
-
-	Var a3 = a1 + 1;
-	assert (a3 == 33);
-	a3 = a1 - 1;
-	assert (a3 == 31);
-	a3 += 1;
-	assert (a3 == 32);
-	a3 -= 1;
-	assert (a3 == 31);
-	a3 = a1 / 2;
-	assert (a3 == 16);
-	a3 = a1 * 2;
-	assert (a3 == 64);
-	a3 /= 2;
-	assert (a3 == 32);
-	a3 *= 2;
-	assert (a3 == 64);
-#endif // POCO_LONG_IS_64_BIT
-}
-
-
 void VarTest::testUDT()
 {
 	Dummy d0;
@@ -1454,32 +1274,52 @@ void VarTest::testComparisonOperators()
 	assert (any1 >= 0);
 	assert (0 <= any1);
 
-#if !defined(POCO_LONG_IS_64_BIT)
+//#if !defined(POCO_LONG_IS_64_BIT)
 
 	any1 = 1L;
 	assert (any1 == any2);
-	assert (any1 == 1L);
-	assert (1L == any1);
 	assert (any1 == "1");
 	assert ("1" == any1);
-	assert (any1 != 2L);
-	assert (2L != any1);
 	assert (any1 != "2");
 	assert ("2" != any1);
-	assert (any1 <= 1L);
-	assert (1L >= any1);
-	assert (any1 <= 2L);
-	assert (2L >= any1);
-	assert (any1 < 2L);
-	assert (2L > any1);
 	assert (any1 > 0);
-	assert (0 < any1);
-	assert (any1 >= 1L);
-	assert (1L <= any1);
 	assert (any1 >= 0);
+	assert (any1 > 0LL);
+	assert (any1 >= 0LL);
+#ifdef NOT_SUPPORTED_ANYMORE
+	assert (any1 == 1L);
+	assert (any1 != 2L);
+	assert (any1 <= 1L);
+	assert (any1 >= 1L);
+	assert (any1 <= 2L);
+	assert (any1 < 2L);
+#endif
+	assert (any1 == 1LL);
+	assert (any1 != 2LL);
+	assert (any1 <= 1LL);
+	assert (any1 >= 1LL);
+	assert (any1 <= 2LL);
+	assert (any1 < 2LL);
+	assert (0 < any1);
 	assert (0 <= any1);
+	assert (0L < any1);
+	assert (0L <= any1);
+	assert (1L == any1);
+	assert (2L != any1);
+	assert (1L >= any1);
+	assert (2L >= any1);
+	assert (2L > any1);
+	assert (1L <= any1);
+	assert (1LL == any1);
+	assert (2LL != any1);
+	assert (1LL >= any1);
+	assert (2LL >= any1);
+	assert (2LL > any1);
+	assert (1LL <= any1);
+	assert (0LL < any1);
+	assert (0LL <= any1);
 
-#endif // !defined(POCO_LONG_IS_64_BIT)
+//#endif // !defined(POCO_LONG_IS_64_BIT)
 
 	any1 = 0x31;
 	assert (any1 == '1');
@@ -2552,10 +2392,6 @@ void VarTest::testEmpty()
 	testEmptyComparisons<Poco::Int32>();
 	testEmptyComparisons<Poco::UInt64>();
 	testEmptyComparisons<Poco::Int64>();
-#ifndef POCO_LONG_IS_64_BIT
-	testEmptyComparisons<unsigned long>();
-	testEmptyComparisons<long>();
-#endif
 	testEmptyComparisons<float>();
 	testEmptyComparisons<double>();
 
@@ -2664,8 +2500,6 @@ CppUnit::Test* VarTest::suite()
 	CppUnit_addTest(pSuite, VarTest, testChar);
 	CppUnit_addTest(pSuite, VarTest, testFloat);
 	CppUnit_addTest(pSuite, VarTest, testDouble);
-	CppUnit_addTest(pSuite, VarTest, testLong);
-	CppUnit_addTest(pSuite, VarTest, testULong);
 	CppUnit_addTest(pSuite, VarTest, testString);
 	CppUnit_addTest(pSuite, VarTest, testUDT);
 	CppUnit_addTest(pSuite, VarTest, testConversionOperator);

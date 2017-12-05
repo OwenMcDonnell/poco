@@ -85,10 +85,10 @@ void BinaryReaderWriterTest::write(BinaryWriter& writer)
 	writer << (unsigned short) 50000;
 	writer << -123456;
 	writer << (unsigned) 123456;
-#ifndef POCO_LONG_IS_64_BIT
+#ifdef NOT_SUPPORTED_ANYMORE
 	writer << (long) -1234567890;
 	writer << (unsigned long) 1234567890;
-#endif // POCO_LONG_IS_64_BIT
+#endif
 	writer << (Int64) -1234567890;
 	writer << (UInt64) 1234567890;
 
@@ -151,7 +151,7 @@ void BinaryReaderWriterTest::read(BinaryReader& reader)
 	reader >> uintv;
 	assert (uintv == 123456);
 
-#ifndef POCO_LONG_IS_64_BIT
+#ifdef NOT_SUPPORTED_ANYMORE
 	long longv;
 	reader >> longv;
 	assert (longv == -1234567890);
@@ -159,7 +159,7 @@ void BinaryReaderWriterTest::read(BinaryReader& reader)
 	unsigned long ulongv;
 	reader >> ulongv;
 	assert (ulongv == 1234567890);
-#endif // POCO_LONG_IS_64_BIT
+#endif
 
 	Int64 int64v;
 	reader >> int64v;

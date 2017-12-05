@@ -65,16 +65,12 @@ public:
 
 	BinaryReader& operator >> (bool& value);
 	BinaryReader& operator >> (char& value);
-	BinaryReader& operator >> (unsigned char& value);
-	BinaryReader& operator >> (signed char& value);
-	BinaryReader& operator >> (short& value);
-	BinaryReader& operator >> (unsigned short& value);
-	BinaryReader& operator >> (int& value);
-	BinaryReader& operator >> (unsigned int& value);
-#ifndef POCO_LONG_IS_64_BIT
-	BinaryReader& operator >> (long& value);
-	BinaryReader& operator >> (unsigned long& value);
-#endif // POCO_LONG_IS_64_BIT
+	BinaryReader& operator >> (Int8& value);
+	BinaryReader& operator >> (UInt8& value);
+	BinaryReader& operator >> (Int16& value);
+	BinaryReader& operator >> (UInt16& value);
+	BinaryReader& operator >> (Int32& value);
+	BinaryReader& operator >> (UInt32& value);
 	BinaryReader& operator >> (float& value);
 	BinaryReader& operator >> (double& value);
 	BinaryReader& operator >> (Int64& value);

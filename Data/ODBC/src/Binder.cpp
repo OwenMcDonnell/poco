@@ -31,7 +31,7 @@ static void getProp(const TypeInfo& dataTypes, SQLSMALLINT sqlType, size_t& val)
 	Poco::DynamicAny r;
 	if (dataTypes.tryGetInfo(sqlType, NM, r))
 	{
-#ifndef POCO_LONG_IS_64_BIT
+#ifdef NOT_SUPPORTED_ANYMORE
 		long sz = r.convert<long>();
 #else
 		Poco::Int64 sz = r.convert<Poco::Int64>();
@@ -572,7 +572,7 @@ void Binder::getColSizeAndPrecision(std::size_t pos,
 	{
 		DynamicAny tmp;
 		bool found = _pTypeInfo->tryGetInfo(cDataType, "COLUMN_SIZE", tmp);
-		if (found) colSize = tmp;
+		if (found) reinterpret_cast<Int32&>(colSize) = tmp;
 		if (colSize && actualSize > colSize)
 		{
 			throw LengthExceededException(Poco::format("Error binding column %z size=%z, max size=%ld)",

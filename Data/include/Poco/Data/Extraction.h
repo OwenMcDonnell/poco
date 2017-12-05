@@ -865,7 +865,7 @@ inline AbstractExtraction::Ptr into(T& t)
 	return new Extraction<T>(t);
 }
 
-
+#ifdef NOT_SUPPORTED_ANYMORE
 template <>
 inline AbstractExtraction::Ptr into(long& t)
 	/// Convenience function to allow for a more compact creation of an extraction object.
@@ -888,7 +888,7 @@ inline AbstractExtraction::Ptr into(unsigned long& t)
 	return new Extraction<Poco::UInt64>(reinterpret_cast<Poco::UInt64&>(t));
 #endif
 }
-
+#endif
 
 template <typename T>
 inline AbstractExtraction::Ptr into(T& t, const Position& pos)

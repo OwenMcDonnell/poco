@@ -49,23 +49,23 @@ public:
 	static std::string format(int value);
 		/// Formats an integer value in decimal notation.
 
-	static std::string format(int value, int width);
+	static std::string format(Int32 value, int width);
 		/// Formats an integer value in decimal notation,
 		/// right justified in a field having at least
 		/// the specified width.
 
-	static std::string format0(int value, int width);
+	static std::string format0(Int32 value, int width);
 		/// Formats an integer value in decimal notation,
 		/// right justified and zero-padded in a field
 		/// having at least the specified width.
 
-	static std::string formatHex(int value, bool prefix = false);
+	static std::string formatHex(Int32 value, bool prefix = false);
 		/// Formats an int value in hexadecimal notation.
 		/// If prefix is true, "0x" prefix is prepended to the
 		/// resulting string.
 		/// The value is treated as unsigned.
 
-	static std::string formatHex(int value, int width, bool prefix = false);
+	static std::string formatHex(Int32 value, int width, bool prefix = false);
 		/// Formats a int value in hexadecimal notation,
 		/// right justified and zero-padded in
 		/// a field having at least the specified width.
@@ -73,86 +73,30 @@ public:
 		/// resulting string.
 		/// The value is treated as unsigned.
 
-	static std::string format(unsigned value);
+	static std::string format(UInt32 value);
 		/// Formats an unsigned int value in decimal notation.
 
-	static std::string format(unsigned value, int width);
+	static std::string format(UInt32 value, int width);
 		/// Formats an unsigned long int in decimal notation,
 		/// right justified in a field having at least the
 		/// specified width.
 
-	static std::string format0(unsigned int value, int width);
+	static std::string format0(UInt32 value, int width);
 		/// Formats an unsigned int value in decimal notation,
 		/// right justified and zero-padded in a field having at
 		/// least the specified width.
 
-	static std::string formatHex(unsigned value, bool prefix = false);
+	static std::string formatHex(UInt32 value, bool prefix = false);
 		/// Formats an unsigned int value in hexadecimal notation.
 		/// If prefix is true, "0x" prefix is prepended to the
 		/// resulting string.
 
-	static std::string formatHex(unsigned value, int width, bool prefix = false);
+	static std::string formatHex(UInt32 value, int width, bool prefix = false);
 		/// Formats a int value in hexadecimal notation,
 		/// right justified and zero-padded in
 		/// a field having at least the specified width.
 		/// If prefix is true, "0x" prefix is prepended to the
 		/// resulting string.
-
-#ifndef POCO_LONG_IS_64_BIT
-
-	static std::string format(long value);
-		/// Formats a long value in decimal notation.
-
-	static std::string format(long value, int width);
-		/// Formats a long value in decimal notation,
-		/// right justified in a field having at least the
-		/// specified width.
-
-	static std::string format0(long value, int width);
-		/// Formats a long value in decimal notation,
-		/// right justified and zero-padded in a field
-		/// having at least the specified width.
-
-	static std::string formatHex(long value, bool prefix = false);
-		/// Formats an unsigned long value in hexadecimal notation.
-		/// If prefix is true, "0x" prefix is prepended to the
-		/// resulting string.
-		/// The value is treated as unsigned.
-
-	static std::string formatHex(long value, int width, bool prefix = false);
-		/// Formats an unsigned long value in hexadecimal notation,
-		/// right justified and zero-padded in a field having at least the
-		/// specified width.
-		/// If prefix is true, "0x" prefix is prepended to the
-		/// resulting string.
-		/// The value is treated as unsigned.
-
-	static std::string format(unsigned long value);
-		/// Formats an unsigned long value in decimal notation.
-
-	static std::string format(unsigned long value, int width);
-		/// Formats an unsigned long value in decimal notation,
-		/// right justified in a field having at least the specified
-		/// width.
-
-	static std::string format0(unsigned long value, int width);
-		/// Formats an unsigned long value in decimal notation,
-		/// right justified and zero-padded
-		/// in a field having at least the specified width.
-
-	static std::string formatHex(unsigned long value, bool prefix = false);
-		/// Formats an unsigned long value in hexadecimal notation.
-		/// If prefix is true, "0x" prefix is prepended to the
-		/// resulting string.
-
-	static std::string formatHex(unsigned long value, int width, bool prefix = false);
-		/// Formats an unsigned long value in hexadecimal notation,
-		/// right justified and zero-padded in a field having at least the
-		/// specified width.
-		/// If prefix is true, "0x" prefix is prepended to the
-		/// resulting string.
-
-#endif // POCO_LONG_IS_64_BIT
 
 	static std::string format(Int64 value);
 		/// Formats a 64-bit integer value in decimal notation.
@@ -237,97 +181,49 @@ public:
 		/// Formats a bool value in decimal/text notation,
 		/// according to format parameter.
 
-	static void append(std::string& str, int value);
+	static void append(std::string& str, Int32 value);
 		/// Formats an integer value in decimal notation.
 
-	static void append(std::string& str, int value, int width);
+	static void append(std::string& str, Int32 value, int width);
 		/// Formats an integer value in decimal notation,
 		/// right justified in a field having at least
 		/// the specified width.
 
-	static void append0(std::string& str, int value, int width);
+	static void append0(std::string& str, Int32 value, int width);
 		/// Formats an integer value in decimal notation,
 		/// right justified and zero-padded in a field
 		/// having at least the specified width.
 
-	static void appendHex(std::string& str, int value);
+	static void appendHex(std::string& str, Int32 value);
 		/// Formats an int value in hexadecimal notation.
 		/// The value is treated as unsigned.
 
-	static void appendHex(std::string& str, int value, int width);
+	static void appendHex(std::string& str, Int32 value, int width);
 		/// Formats a int value in hexadecimal notation,
 		/// right justified and zero-padded in
 		/// a field having at least the specified width.
 		/// The value is treated as unsigned.
 
-	static void append(std::string& str, unsigned value);
+	static void append(std::string& str, UInt32 value);
 		/// Formats an unsigned int value in decimal notation.
 
-	static void append(std::string& str, unsigned value, int width);
+	static void append(std::string& str, UInt32 value, int width);
 		/// Formats an unsigned long int in decimal notation,
 		/// right justified in a field having at least the
 		/// specified width.
 
-	static void append0(std::string& str, unsigned int value, int width);
+	static void append0(std::string& str, UInt32 value, int width);
 		/// Formats an unsigned int value in decimal notation,
 		/// right justified and zero-padded in a field having at
 		/// least the specified width.
 
-	static void appendHex(std::string& str, unsigned value);
+	static void appendHex(std::string& str, UInt32 value);
 		/// Formats an unsigned int value in hexadecimal notation.
 
-	static void appendHex(std::string& str, unsigned value, int width);
+	static void appendHex(std::string& str, UInt32 value, int width);
 		/// Formats a int value in hexadecimal notation,
 		/// right justified and zero-padded in
 		/// a field having at least the specified width.
-
-#ifndef POCO_LONG_IS_64_BIT
-
-	static void append(std::string& str, long value);
-		/// Formats a long value in decimal notation.
-
-	static void append(std::string& str, long value, int width);
-		/// Formats a long value in decimal notation,
-		/// right justified in a field having at least the
-		/// specified width.
-
-	static void append0(std::string& str, long value, int width);
-		/// Formats a long value in decimal notation,
-		/// right justified and zero-padded in a field
-		/// having at least the specified width.
-
-	static void appendHex(std::string& str, long value);
-		/// Formats an unsigned long value in hexadecimal notation.
-		/// The value is treated as unsigned.
-
-	static void appendHex(std::string& str, long value, int width);
-		/// Formats an unsigned long value in hexadecimal notation,
-		/// right justified and zero-padded in a field having at least the
-		/// specified width.
-		/// The value is treated as unsigned.
-
-	static void append(std::string& str, unsigned long value);
-		/// Formats an unsigned long value in decimal notation.
-
-	static void append(std::string& str, unsigned long value, int width);
-		/// Formats an unsigned long value in decimal notation,
-		/// right justified in a field having at least the specified
-		/// width.
-
-	static void append0(std::string& str, unsigned long value, int width);
-		/// Formats an unsigned long value in decimal notation,
-		/// right justified and zero-padded
-		/// in a field having at least the specified width.
-
-	static void appendHex(std::string& str, unsigned long value);
-		/// Formats an unsigned long value in hexadecimal notation.
-
-	static void appendHex(std::string& str, unsigned long value, int width);
-		/// Formats an unsigned long value in hexadecimal notation,
-		/// right justified and zero-padded in a field having at least the
-		/// specified width.
-
-#endif // POCO_LONG_IS_64_BIT
 
 	static void append(std::string& str, Int64 value);
 		/// Formats a 64-bit integer value in decimal notation.
@@ -410,7 +306,7 @@ private:
 // inlines
 //
 
-inline std::string NumberFormatter::format(int value)
+inline std::string NumberFormatter::format(Int32 value)
 {
 	std::string result;
 	intToStr(value, 10, result);
@@ -418,7 +314,7 @@ inline std::string NumberFormatter::format(int value)
 }
 
 
-inline std::string NumberFormatter::format(int value, int width)
+inline std::string NumberFormatter::format(Int32 value, int width)
 {
 	std::string result;
 	intToStr(value, 10, result, false, width, ' ');
@@ -426,7 +322,7 @@ inline std::string NumberFormatter::format(int value, int width)
 }
 
 
-inline std::string NumberFormatter::format0(int value, int width)
+inline std::string NumberFormatter::format0(Int32 value, int width)
 {
 	std::string result;
 	intToStr(value, 10, result, false, width, '0');
@@ -434,7 +330,7 @@ inline std::string NumberFormatter::format0(int value, int width)
 }
 
 
-inline std::string NumberFormatter::formatHex(int value, bool prefix)
+inline std::string NumberFormatter::formatHex(Int32 value, bool prefix)
 {
 	std::string result;
 	uIntToStr(static_cast<unsigned int>(value), 0x10, result, prefix);
@@ -450,7 +346,7 @@ inline std::string NumberFormatter::formatHex(int value, int width, bool prefix)
 }
 
 
-inline std::string NumberFormatter::format(unsigned value)
+inline std::string NumberFormatter::format(UInt32 value)
 {
 	std::string result;
 	uIntToStr(value, 10, result);
@@ -458,7 +354,7 @@ inline std::string NumberFormatter::format(unsigned value)
 }
 
 
-inline std::string NumberFormatter::format(unsigned value, int width)
+inline std::string NumberFormatter::format(UInt32 value, int width)
 {
 	std::string result;
 	uIntToStr(value, 10, result, false, width, ' ');
@@ -466,7 +362,7 @@ inline std::string NumberFormatter::format(unsigned value, int width)
 }
 
 
-inline std::string NumberFormatter::format0(unsigned int value, int width)
+inline std::string NumberFormatter::format0(UInt32 value, int width)
 {
 	std::string result;
 	uIntToStr(value, 10, result, false, width, '0');
@@ -474,7 +370,7 @@ inline std::string NumberFormatter::format0(unsigned int value, int width)
 }
 
 
-inline std::string NumberFormatter::formatHex(unsigned value, bool prefix)
+inline std::string NumberFormatter::formatHex(UInt32 value, bool prefix)
 {
 	std::string result;
 	uIntToStr(value, 0x10, result, prefix);
@@ -482,98 +378,12 @@ inline std::string NumberFormatter::formatHex(unsigned value, bool prefix)
 }
 
 
-inline std::string NumberFormatter::formatHex(unsigned value, int width, bool prefix)
+inline std::string NumberFormatter::formatHex(UInt32 value, int width, bool prefix)
 {
 	std::string result;
 	uIntToStr(value, 0x10, result, prefix, width, '0');
 	return result;
 }
-
-
-#ifndef POCO_LONG_IS_64_BIT
-
-
-inline std::string NumberFormatter::format(long value)
-{
-	std::string result;
-	intToStr(value, 10, result);
-	return result;
-}
-
-
-inline std::string NumberFormatter::format(long value, int width)
-{
-	std::string result;
-	intToStr(value, 10, result, false, width, ' ');
-	return result;
-}
-
-
-inline std::string NumberFormatter::format0(long value, int width)
-{
-	std::string result;
-	intToStr(value, 10, result, false, width, '0');
-	return result;
-}
-
-
-inline std::string NumberFormatter::formatHex(long value, bool prefix)
-{
-	std::string result;
-	uIntToStr(static_cast<unsigned long>(value), 0x10, result, prefix);
-	return result;
-}
-
-
-inline std::string NumberFormatter::formatHex(long value, int width, bool prefix)
-{
-	std::string result;
-	uIntToStr(static_cast<unsigned long>(value), 0x10, result, prefix, width, '0');
-	return result;
-}
-
-
-inline std::string NumberFormatter::format(unsigned long value)
-{
-	std::string result;
-	uIntToStr(value, 10, result);
-	return result;
-}
-
-
-inline std::string NumberFormatter::format(unsigned long value, int width)
-{
-	std::string result;
-	uIntToStr(value, 10, result, false, width, ' ');
-	return result;
-}
-
-
-inline std::string NumberFormatter::format0(unsigned long value, int width)
-{
-	std::string result;
-	uIntToStr(value, 10, result, false, width, '0');
-	return result;
-}
-
-
-inline std::string NumberFormatter::formatHex(unsigned long value, bool prefix)
-{
-	std::string result;
-	uIntToStr(value, 0x10, result, prefix);
-	return result;
-}
-
-
-inline std::string NumberFormatter::formatHex(unsigned long value, int width, bool prefix)
-{
-	std::string result;
-	uIntToStr(value, 0x10, result, prefix, width, '0');
-	return result;
-}
-
-
-#endif // POCO_LONG_IS_64_BIT
 
 
 inline std::string NumberFormatter::format(Int64 value)

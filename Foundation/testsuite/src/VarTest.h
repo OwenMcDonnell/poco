@@ -38,8 +38,6 @@ public:
 	void testChar();
 	void testFloat();
 	void testDouble();
-	void testLong();
-	void testULong();
 	void testString();
 	void testUDT();
 	void testConversionOperator();

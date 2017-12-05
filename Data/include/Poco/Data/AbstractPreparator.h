@@ -161,23 +161,6 @@ public:
 	virtual void prepare(std::size_t pos, const std::list<Poco::UInt64>& val);
 		/// Prepares an UInt64 list.
 
-#ifndef POCO_LONG_IS_64_BIT
-	virtual void prepare(std::size_t pos, const long&) = 0;
-		/// Prepares a long.
-
-	virtual void prepare(std::size_t pos, const unsigned long&) = 0;
-		/// Prepares an unsigned long.
-
-	virtual void prepare(std::size_t pos, const std::vector<long>& val);
-		/// Prepares a long vector.
-
-	virtual void prepare(std::size_t pos, const std::deque<long>& val);
-		/// Prepares a long deque.
-
-	virtual void prepare(std::size_t pos, const std::list<long>& val);
-		/// Prepares a long list.
-#endif
-
 	virtual void prepare(std::size_t pos, const bool&) = 0;
 		/// Prepares a boolean.
 

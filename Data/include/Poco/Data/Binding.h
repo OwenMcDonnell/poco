@@ -1392,7 +1392,7 @@ inline AbstractBinding::Ptr use(T& t, const std::string& name = "")
 	return new Binding<T>(t, name, AbstractBinding::PD_IN);
 }
 
-
+#ifdef NOT_SUPPORTED_ANYMORE
 template <>
 inline AbstractBinding::Ptr use(long& t, const std::string& name)
 	/// Convenience function for a more compact Binding creation.
@@ -1415,7 +1415,7 @@ inline AbstractBinding::Ptr use(unsigned long& t, const std::string& name)
 	return new Binding<Poco::UInt64>(reinterpret_cast<Poco::UInt64&>(t), name, AbstractBinding::PD_IN);
 #endif
 }
-
+#endif
 
 inline AbstractBinding::Ptr use(const NullData& t, const std::string& name = "")
 	/// NullData overload.
