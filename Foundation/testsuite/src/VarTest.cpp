@@ -1274,9 +1274,23 @@ void VarTest::testComparisonOperators()
 	assert (any1 >= 0);
 	assert (0 <= any1);
 
-//#if !defined(POCO_LONG_IS_64_BIT)
-
 	any1 = 1L;
+	try { any1 == any2; fail ("must fail"); }
+	catch (BadCastException&){}
+	try { 2L != any1; fail ("must fail"); }
+	catch (BadCastException&){}
+	try { 1L >= any1; fail ("must fail"); }
+	catch (BadCastException&){}
+	try { 1L <= any1; fail ("must fail"); }
+	catch (BadCastException&){}
+	try { 2L == any1; fail ("must fail"); }
+	catch (BadCastException&){}
+	try { 2L > any1; fail ("must fail"); }
+	catch (BadCastException&){}
+	try { 0L < any1; fail ("must fail"); }
+	catch (BadCastException&){}
+	
+	any1 = 1;
 	assert (any1 == any2);
 	assert (any1 == "1");
 	assert ("1" == any1);
@@ -1286,30 +1300,18 @@ void VarTest::testComparisonOperators()
 	assert (any1 >= 0);
 	assert (any1 > 0LL);
 	assert (any1 >= 0LL);
-#ifdef NOT_SUPPORTED_ANYMORE
-	assert (any1 == 1L);
-	assert (any1 != 2L);
-	assert (any1 <= 1L);
-	assert (any1 >= 1L);
-	assert (any1 <= 2L);
-	assert (any1 < 2L);
-#endif
+
 	assert (any1 == 1LL);
 	assert (any1 != 2LL);
 	assert (any1 <= 1LL);
 	assert (any1 >= 1LL);
 	assert (any1 <= 2LL);
 	assert (any1 < 2LL);
-	assert (0 < any1);
-	assert (0 <= any1);
-	assert (0L < any1);
-	assert (0L <= any1);
-	assert (1L == any1);
-	assert (2L != any1);
-	assert (1L >= any1);
-	assert (2L >= any1);
-	assert (2L > any1);
-	assert (1L <= any1);
+	assert (0   < any1);
+	assert (0   <= any1);
+	assert (0LL < any1);
+	assert (0LL <= any1);
+
 	assert (1LL == any1);
 	assert (2LL != any1);
 	assert (1LL >= any1);
