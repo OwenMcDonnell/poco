@@ -1296,17 +1296,17 @@ void VarTest::testComparisonOperators()
 	assert ("1" == any1);
 	assert (any1 != "2");
 	assert ("2" != any1);
-	assert (any1 > 0);
+	assert (any1 >  0);
 	assert (any1 >= 0);
-	assert (any1 > 0LL);
-	assert (any1 >= 0LL);
+	assert (any1 >  int64(0));
+	assert (any1 >= int64(0));
 
-	assert (any1 == 1LL);
-	assert (any1 != 2LL);
-	assert (any1 <= 1LL);
-	assert (any1 >= 1LL);
-	assert (any1 <= 2LL);
-	assert (any1 < 2LL);
+	assert (any1 == int64(1));
+	assert (any1 != int64(2));
+	assert (any1 <= int64(1));
+	assert (any1 >= int64(1));
+	assert (any1 <= int64(2));
+	assert (any1 <  int64(2));
 	assert (0   < any1);
 	assert (0   <= any1);
 
