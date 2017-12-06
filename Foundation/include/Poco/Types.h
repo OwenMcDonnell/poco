@@ -34,14 +34,17 @@ typedef std::int16_t  Int16;
 typedef std::uint16_t UInt16;
 typedef std::int32_t  Int32;
 typedef std::uint32_t UInt32;
-typedef std::int64_t  Int64;
-typedef std::uint64_t UInt64;
 
 
 #if defined(_MSC_VER)
 	//
 	// Windows/Visual C++
 	//
+
+	typedef long long  Int64;
+	typedef long long UInt64;
+	#define  int64(c) c ## LL
+	#define uint64(c) c ## ULL
 
 	#if defined(_WIN64)
 		#define POCO_PTR_IS_64_BIT 1
@@ -63,13 +66,22 @@ typedef std::uint64_t UInt64;
 		typedef std::uint64_t UIntPtr;
 	#else
 		#if defined(__LP64__)
-			typedef std::int64_t  IntPtr;
-			typedef std::uint64_t UIntPtr;
+			typedef long			 Int64;
+			typedef unsigned long	UInt64;
+			#define  int64(c) c ##  L
+			#define uint64(c) c ## UL
+
+			typedef long			 IntPtr;
+			typedef unsigned long	UIntPtr;
 			#define POCO_PTR_IS_64_BIT 1
 			#define POCO_LONG_IS_64_BIT 1
 		#else
-			typedef std::int32_t  IntPtr;
-			typedef std::uint32_t UIntPtr;
+			typedef long long			 Int64;
+			typedef unsigned long long	UInt64;
+			#define  int64(c) c ##  LL
+			#define uint64(c) c ## ULL
+			typedef int					 IntPtr;
+			typedef unsigned int		UIntPtr;
 		#endif
 	#endif
 

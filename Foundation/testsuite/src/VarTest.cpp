@@ -1309,19 +1309,20 @@ void VarTest::testComparisonOperators()
 	assert (any1 < 2LL);
 	assert (0   < any1);
 	assert (0   <= any1);
-	assert (0LL < any1);
-	assert (0LL <= any1);
 
-	assert (1LL == any1);
-	assert (2LL != any1);
-	assert (1LL >= any1);
-	assert (2LL >= any1);
-	assert (2LL > any1);
-	assert (1LL <= any1);
-	assert (0LL < any1);
-	assert (0LL <= any1);
+	assert (int64(0)  <  any1);
+	assert (int64(0)  <= any1);
+	assert (uint64(0) <  any1);
+	assert (uint64(0) <= any1);
 
-//#endif // !defined(POCO_LONG_IS_64_BIT)
+	assert (int64(1) == any1);
+	assert (int64(2) != any1);
+	assert (int64(1) >= any1);
+	assert (int64(2) >= any1);
+	assert (int64(2) >  any1);
+	assert (int64(1) <= any1);
+	assert (int64(0) <  any1);
+	assert (int64(0) <= any1);
 
 	any1 = 0x31;
 	assert (any1 == '1');
