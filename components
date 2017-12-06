@@ -19,5 +19,6 @@ PageCompiler/File2Page
 CppParser
 MongoDB
 Redis
+PDF
 PocoDoc
 ProGen
