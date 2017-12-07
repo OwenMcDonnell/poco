@@ -81,7 +81,7 @@ INSTALLDIR = $(DESTDIR)$(POCO_PREFIX)
 
 COMPONENTS =  CppUnit Foundation XML JSON Util Net Crypto NetSSL_OpenSSL
 COMPONENTS += Data Data/ODBC Data/SQLite Data/MySQL Data/PostgreSQL
-COMPONENTS += MongoDB Redis Zip PageCompiler PageCompiler/File2Page CppParser PDF
+COMPONENTS += MongoDB Redis Zip PageCompiler PageCompiler/File2Page CppParser 
 
 cppunit:
 	$(MAKE) -C $(POCO_BASE)/CppUnit
@@ -121,22 +121,22 @@ endif
 # -------------------------------------------------------------------------------------------------------------------------------------
 libexecs =  Foundation-libexec XML-libexec JSON-libexec Util-libexec Net-libexec Crypto-libexec NetSSL_OpenSSL-libexec
 libexecs += Data-libexec  Data/ODBC-libexec Data/SQLite-libexec Data/MySQL-libexec Data/PostgreSQL-libexec
-libexecs += MongoDB-libexec Redis-libexec Zip-libexec PageCompiler-libexec PageCompiler/File2Page-libexec CppParser-libexec PDF-libexec
+libexecs += MongoDB-libexec Redis-libexec Zip-libexec PageCompiler-libexec PageCompiler/File2Page-libexec CppParser-libexec 
 
 # -------------------------------------------------------------------------------------------------------------------------------------
 tests    =  Foundation-tests XML-tests JSON-tests Util-tests Net-tests Crypto-tests NetSSL_OpenSSL-tests
 tests    += Data-tests Data/ODBC-tests  Data/SQLite-tests Data/MySQL-tests Data/PostgreSQL-tests
-tests	 += MongoDB-tests Redis-tests Zip-tests CppParser-tests PDF-tests
+tests	 += MongoDB-tests Redis-tests Zip-tests CppParser-tests 
 
 # -------------------------------------------------------------------------------------------------------------------------------------
 samples  =  Foundation-samples XML-samples JSON-samples Util-samples Net-samples Crypto-samples NetSSL_OpenSSL-samples
 samples  += Data-samples
-samples  += MongoDB-samples Zip-samples PageCompiler-samples PDF-samples
+samples  += MongoDB-samples Zip-samples PageCompiler-samples 
 
 # -------------------------------------------------------------------------------------------------------------------------------------
 cleans   =  Foundation-clean XML-clean JSON-clean Util-clean Net-clean Crypto-clean NetSSL_OpenSSL-clean
 cleans   += Data-clean Data/ODBC-clean Data/SQLite-clean Data/MySQL-clean Data/PostgreSQL-clean
-cleans	 += MongoDB-clean Redis-clean Zip-clean PageCompiler-clean PageCompiler/File2Page-clean CppParser-clean PDF-clean
+cleans	 += MongoDB-clean Redis-clean Zip-clean PageCompiler-clean PageCompiler/File2Page-clean CppParser-clean 
 
 # -------------------------------------------------------------------------------------------------------------------------------------
 .PHONY: $(libexecs)
