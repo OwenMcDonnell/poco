@@ -1290,7 +1290,7 @@ void VarTest::testComparisonOperators()
 	catch (BadCastException&){}
 	try { 0LL < any1; fail ("must fail"); }
 	catch (BadCastException&){}
-#else
+#elif defined(POCO_OS_FAMILY_WINDOWS)
 	any1 = 1L;
 	try { any1 == any2; fail ("must fail"); }
 	catch (BadCastException&){}
