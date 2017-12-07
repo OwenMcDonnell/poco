@@ -81,6 +81,15 @@ matrix:
         - ./configure --everything --omit=PDF && source config.make && cat build/config/$POCO_CONFIG 
         - make -s -j2 && ./travis/Linux/runtests.sh
 
+    - env:    TEST_NAME="gcc 5.4 -m32 (make) bundled"
+      compiler: gcc
+      script:
+        - export CC="gcc-5"
+        - export CXX="g++-5"
+        - $CXX --version
+        - ./configure --config=Linux32-gcc --everything --omit=PDF,Data/ODBC,Data/PostgreSQL,Data/MySQL && source config.make && cat build/config/$POCO_CONFIG 
+        - make -s -j2 && ./travis/Linux/runtests.sh
+
     #- env:    TEST_NAME="gcc 5.4 (make) unbundled"
     #  ======================================= unit tests fail ures due to unbundled pcre
     # There was 1 error:
@@ -123,18 +132,6 @@ matrix:
         - export POCO_BASE=`pwd`
         - mkdir cmake-build && cd cmake-build && cmake  -DENABLE_PDF=OFF -DENABLE_TESTS=ON .. && make -s -j2 && ctest -VV -E Data && cd ..
  
-
-    - env:    TEST_NAME="clang (make) bundled"
-      os: osx
-      compiler: clang
-      script:
-        - export CC="clang"
-        - export CXX="clang++"
-        - $CXX --version
-        - $CXX -x c++ /dev/null -dM -E
-        - ./configure --everything --omit=PDF,Data/ODBC,Data/MySQL,Data/PostgreSQL && source config.make && cat build/config/$POCO_CONFIG 
-        - make -s -j2 && sudo make install && ./travis/OSX/runtests.sh
-
     - env:    TEST_NAME="clang 4.0 (make) bundled"
       compiler: clang
       script:
