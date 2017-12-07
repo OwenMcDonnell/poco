@@ -1274,6 +1274,23 @@ void VarTest::testComparisonOperators()
 	assert (any1 >= 0);
 	assert (0 <= any1);
 
+#if	defined(POCO_LONG_IS_64_BIT)
+	any1 = 1LL;
+	try { any1 == any2; fail ("must fail"); }
+	catch (BadCastException&){}
+	try { 2LL != any1; fail ("must fail"); }
+	catch (BadCastException&){}
+	try { 1LL >= any1; fail ("must fail"); }
+	catch (BadCastException&){}
+	try { 1LL <= any1; fail ("must fail"); }
+	catch (BadCastException&){}
+	try { 2LL == any1; fail ("must fail"); }
+	catch (BadCastException&){}
+	try { 2LL > any1; fail ("must fail"); }
+	catch (BadCastException&){}
+	try { 0LL < any1; fail ("must fail"); }
+	catch (BadCastException&){}
+#else
 	any1 = 1L;
 	try { any1 == any2; fail ("must fail"); }
 	catch (BadCastException&){}
@@ -1289,7 +1306,8 @@ void VarTest::testComparisonOperators()
 	catch (BadCastException&){}
 	try { 0L < any1; fail ("must fail"); }
 	catch (BadCastException&){}
-	
+#endif
+
 	any1 = 1;
 	assert (any1 == any2);
 	assert (any1 == "1");
