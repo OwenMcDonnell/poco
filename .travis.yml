@@ -62,7 +62,7 @@ matrix:
   fast_finish: true
 
   include:
-    - env:    TEST_NAME="gcc 4.9 (make) bundled"
+    - env:    TEST_NAME="gcc 4.9 amd64 (make) bundled"
       compiler: gcc
       script:
         - sudo apt-get install -qq -y gcc-4.9 g++-4.9
@@ -72,7 +72,7 @@ matrix:
         - ./configure --everything --omit=PDF && source config.make && cat build/config/$POCO_CONFIG 
         - make -s -j2 && ./travis/Linux/runtests.sh
 
-    - env:    TEST_NAME="gcc 5.4 (make) bundled"
+    - env:    TEST_NAME="gcc 5.4 amd64 (make) bundled"
       compiler: gcc
       script:
         - export CC="gcc-5"
@@ -81,7 +81,7 @@ matrix:
         - ./configure --everything --omit=PDF && source config.make && cat build/config/$POCO_CONFIG 
         - make -s -j2 && ./travis/Linux/runtests.sh
 
-    - env:    TEST_NAME="gcc 5.4 -m32 (make) bundled"
+    - env:    TEST_NAME="gcc 5.4 x86 (make) bundled"
       compiler: gcc
       script:
         - sudo apt-get install gcc-5-multilib
@@ -89,9 +89,9 @@ matrix:
         - export CXX="g++-5"
         - $CXX --version
         - ./configure --config=Linux32-gcc --everything --omit=PDF,Data/ODBC,Data/PostgreSQL,Data/MySQL && source config.make && cat build/config/$POCO_CONFIG 
-        - make -s -j2 && ./travis/Linux/runtests.sh
+        - make -s -j2 && export OSARCH=x86 && ./travis/Linux/runtests.sh
 
-    #- env:    TEST_NAME="gcc 5.4 (make) unbundled"
+    #- env:    TEST_NAME="gcc 5.4 amd64 (make) unbundled"
     #  ======================================= unit tests fail ures due to unbundled pcre
     # There was 1 error:
     #  1: N7CppUnit10TestCallerI21RegularExpressionTestEE.testSubst2
@@ -122,7 +122,7 @@ matrix:
     #    - $CXX --version
     #    - ./configure --everything --omit=PDF --unbundled && make -s -j2 && ./travis/Linux/runtests.sh
     
-    - env:    TEST_NAME="gcc 4.9 (CMake)"
+    - env:    TEST_NAME="gcc 4.9 amd64 (CMake)"
       compiler: gcc
       script:
         - sudo apt-get install -qq -y gcc-4.9 g++-4.9
@@ -133,7 +133,7 @@ matrix:
         - export POCO_BASE=`pwd`
         - mkdir cmake-build && cd cmake-build && cmake  -DENABLE_PDF=OFF -DENABLE_TESTS=ON .. && make -s -j2 && ctest -VV -E Data && cd ..
  
-    - env:    TEST_NAME="clang 4.0 (make) bundled"
+    - env:    TEST_NAME="clang 4.0 amd64 (make) bundled"
       compiler: clang
       script:
         - sudo apt-get install -qq -y clang-4.0 lldb-4.0 libc++-dev libc++abi-dev
@@ -144,7 +144,7 @@ matrix:
         - ./configure --config=Linux-clang --everything --omit=PDF && source config.make && cat build/config/$POCO_CONFIG 
         - make -s -j2 && ./travis/Linux/runtests.sh
 
-    - env:    TEST_NAME="clang 5.0 (make) bundled"
+    - env:    TEST_NAME="clang 5.0 amd64 (make) bundled"
       compiler: clang
       script:
         - sudo apt-get install -qq -y clang-5.0 lldb-5.0 libc++-dev libc++abi-dev
@@ -165,7 +165,7 @@ matrix:
         - export CXXFLAGS="-target i386-pc-linux"
         - $CXX --version
         - ./configure --config=Linux-clang --everything --omit=PDF,Data/ODBC,Data/PostgreSQL,Data/MySQL && source config.make && cat build/config/$POCO_CONFIG 
-        - make -s -j2 && ./travis/Linux/runtests.sh
+        - make -s -j2 && export OSARCH=x86 && ./travis/Linux/runtests.sh
 
     #- env:    TEST_NAME="clang 3.5.0 (make) unbundled"
     #  ======================================= compiler error on generating debug info for auto return
@@ -208,7 +208,7 @@ matrix:
     #    - mkdir cmake-build 
     #    - cd cmake-build && cmake  -DENABLE_PDF=OFF -DENABLE_NETSSL=OFF -DENABLE_CRYPTO=OFF -DENABLE_TESTS=ON .. && make -s -j2 && cd ..
 
-    - env:    TEST_NAME="arm-linux-gnueabihf-g++ (CMake)"
+    - env:    TEST_NAME="arm-linux-gnueabihf-g++ armv7 (CMake)"
       compiler: gcc
       script:
         - sudo apt-get install -qq -y g++-arm-linux-gnueabi g++-arm-linux-gnueabihf
