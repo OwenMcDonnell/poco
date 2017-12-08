@@ -155,6 +155,18 @@ matrix:
         - ./configure --config=Linux-clang --everything --omit=PDF && source config.make && cat build/config/$POCO_CONFIG 
         - make -s -j2 && ./travis/Linux/runtests.sh
 
+    - env:    TEST_NAME="clang 5.0 i386 (make) bundled"
+      compiler: clang
+      script:
+        - sudo apt-get install -qq -y clang-5.0 lldb-5.0 libc++-dev libc++abi-dev
+        - export CLANG_VERSTION="-5.0"
+        - export CC="clang-5.0"
+        - export CXX="clang++-5.0"
+        - export CXXFLAGS="-target i386-pc-linux"
+        - $CXX --version
+        - ./configure --config=Linux-clang --everything --omit=PDF,Data/ODBC,Data/PostgreSQL,Data/MySQL && source config.make && cat build/config/$POCO_CONFIG 
+        - make -s -j2 && ./travis/Linux/runtests.sh
+
     #- env:    TEST_NAME="clang 3.5.0 (make) unbundled"
     #  ======================================= compiler error on generating debug info for auto return
     # error: debug information for auto is not yet supported
