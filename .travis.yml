@@ -62,6 +62,17 @@ matrix:
   fast_finish: true
 
   include:
+    - env:    TEST_NAME="clang amd64 (make) bundled"
+      os: osx
+      compiler: clang
+      script:
+        - export CC="clang"
+        - export CXX="clang++"
+        - $CXX --version
+        - $CXX -x c++ /dev/null -dM -E
+        - ./configure --everything --omit=PDF,Data/ODBC,Data/MySQL,Data/PostgreSQL && source config.make && cat build/config/$POCO_CONFIG 
+        - make -s -j2 && sudo make install && ./travis/OSX/runtests.sh
+
     - env:    TEST_NAME="gcc 4.9 amd64 (make) bundled"
       compiler: gcc
       script:
