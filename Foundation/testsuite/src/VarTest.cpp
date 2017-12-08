@@ -1274,23 +1274,7 @@ void VarTest::testComparisonOperators()
 	assert (any1 >= 0);
 	assert (0 <= any1);
 
-#if	defined(POCO_LONG_IS_64_BIT)
-	any1 = 1LL;
-	try { any1 == any2; fail ("must fail"); }
-	catch (BadCastException&){}
-	try { 2LL != any1; fail ("must fail"); }
-	catch (BadCastException&){}
-	try { 1LL >= any1; fail ("must fail"); }
-	catch (BadCastException&){}
-	try { 1LL <= any1; fail ("must fail"); }
-	catch (BadCastException&){}
-	try { 2LL == any1; fail ("must fail"); }
-	catch (BadCastException&){}
-	try { 2LL > any1; fail ("must fail"); }
-	catch (BadCastException&){}
-	try { 0LL < any1; fail ("must fail"); }
-	catch (BadCastException&){}
-#elif defined(POCO_OS_FAMILY_WINDOWS)
+#if defined(POCO_OS_FAMILY_WINDOWS)
 	any1 = 1L;
 	try { any1 == any2; fail ("must fail"); }
 	catch (BadCastException&){}
