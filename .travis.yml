@@ -170,9 +170,8 @@ matrix:
         - export CLANG_VERSTION="-5.0"
         - export CC="clang-5.0"
         - export CXX="clang++-5.0"
-        - export CXXFLAGS="-target i386-pc-linux"
         - $CXX --version
-        - ./configure --config=Linux-clang --everything --omit=PDF,Data/ODBC,Data/PostgreSQL,Data/MySQL && source config.make && cat build/config/$POCO_CONFIG 
+        - ./configure --config=Linux32-clang --everything --omit=PDF,Data/ODBC,Data/PostgreSQL,Data/MySQL && source config.make && cat build/config/$POCO_CONFIG 
         - make -s -j2 && export OSARCH=x86 && ./travis/Linux/runtests.sh
 
     #- env:    test="clang 3.5.0 (make) unbundled"
