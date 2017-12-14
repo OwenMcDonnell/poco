@@ -48,6 +48,7 @@ notifications:
 env:
   global:
     test=""
+    POCO_VERBOSE=1
 
 before_script:
  - echo ${test}
@@ -62,7 +63,7 @@ matrix:
   fast_finish: true
 
   include:
-    - env:    test="clang amd64 (make) bundled"
+    - env:    test="x86 (make) bundled"
       os: osx
       compiler: clang
       script:
@@ -70,37 +71,41 @@ matrix:
         - export CXX="clang++"
         - $CXX --version
         - $CXX -x c++ /dev/null -dM -E
-        - ./configure --everything --omit=PDF,Data/ODBC,Data/MySQL,Data/PostgreSQL && source config.make && cat build/config/$POCO_CONFIG 
+        - ./configure --config=Darwin32-clang-libc++ --everything --omit=PDF,Crypto,NetSSL_OpenSSL,Data/ODBC,Data/MySQL,Data/PostgreSQL
+        - make -s -j2 && sudo make install && export OSARCH=i386 && ./travis/OSX/runtests.sh
+
+    - env:    test="x64 (make) bundled"
+      os: osx
+      compiler: clang
+      script:
+        - export CC="clang"
+        - export CXX="clang++"
+        - $CXX --version
+        - $CXX -x c++ /dev/null -dM -E
+        - ./configure --config=Darwin64-clang-libc++ --everything --omit=PDF,Data/ODBC,Data/MySQL,Data/PostgreSQL
         - make -s -j2 && sudo make install && ./travis/OSX/runtests.sh
 
-    - env:    test="gcc 4.9 amd64 (make) bundled"
+    - env:    test="5.4 x86 (make) bundled"
       compiler: gcc
       script:
-        - sudo apt-get install -qq -y gcc-4.9 g++-4.9
-        - export CC="gcc-4.9"
-        - export CXX="g++-4.9"
+        - sudo apt-get install -qq -y g++-5-multilib
+        - export CC="gcc-5"
+        - export CXX="g++-5"
         - $CXX --version
-        - ./configure --everything --omit=PDF && source config.make && cat build/config/$POCO_CONFIG 
+        - ./configure --config=Linux32-gcc --everything --omit=PDF,Crypto,NetSSL_OpenSSL,Data/ODBC,Data/MySQL,Data/PostgreSQL
         - make -s -j2 && ./travis/Linux/runtests.sh
 
-    - env:    test="gcc 5.4 amd64 (make) bundled"
+    - env:    test="5.4 x64 (make) bundled"
       compiler: gcc
       script:
         - export CC="gcc-5"
         - export CXX="g++-5"
         - $CXX --version
-        - ./configure --everything --omit=PDF && source config.make && cat build/config/$POCO_CONFIG 
+        - ./configure --config=Linux64-gcc --everything --omit=PDF
         - make -s -j2 && ./travis/Linux/runtests.sh
 
-    - env:    test="gcc 5.4 x86 (make) bundled"
-      compiler: gcc
-      script:
-        - sudo apt-get install gcc-5-multilib
-        - ./configure --config=Linux32-gcc --everything --omit=PDF,Data/ODBC,Data/PostgreSQL,Data/MySQL && source config.make && cat build/config/$POCO_CONFIG 
-        - make -s -j2 && export OSARCH=x86 && ./travis/Linux/runtests.sh
-
-    #- env:    test="gcc 5.4 amd64 (make) unbundled"
-    #  ======================================= unit tests fail due to unbundled pcre
+    #- env:    test="5.4 (make) unbundled"
+    #  ======================================= unit tests fail ures due to unbundled pcre
     # There was 1 error:
     #  1: N7CppUnit10TestCallerI21RegularExpressionTestEE.testSubst2
     #     "St9bad_alloc: std::bad_alloc"
@@ -130,7 +135,7 @@ matrix:
     #    - $CXX --version
     #    - ./configure --everything --omit=PDF --unbundled && make -s -j2 && ./travis/Linux/runtests.sh
     
-    - env:    test="gcc 4.9 amd64 (CMake)"
+    - env:    test="4.9 x64 (CMake)"
       compiler: gcc
       script:
         - sudo apt-get install -qq -y gcc-4.9 g++-4.9
@@ -141,7 +146,20 @@ matrix:
         - export POCO_BASE=`pwd`
         - mkdir cmake-build && cd cmake-build && cmake  -DENABLE_PDF=OFF -DENABLE_TESTS=ON .. && make -s -j2 && ctest -VV -E Data && cd ..
  
-    - env:    test="clang 4.0 amd64 (make) bundled"
+
+    - env:    test="4.0 x86 (make) bundled"
+      compiler: clang
+      script:
+        - sudo apt-get install -qq -y clang-4.0 lldb-4.0 libc++-dev libc++abi-dev
+        - sudo apt-get install -qq -y g++-5-multilib
+        - export CLANG_VERSTION="-4.0"
+        - export CC="clang-4.0"
+        - export CXX="clang++-4.0"
+        - $CXX --version
+        - ./configure --config=Linux32-clang --everything --omit=PDF,Crypto,NetSSL_OpenSSL,Data/ODBC,Data/MySQL,Data/PostgreSQL
+        - make -s -j2 && ./travis/Linux/runtests.sh
+
+    - env:    test="4.0 x64 (make) bundled"
       compiler: clang
       script:
         - sudo apt-get install -qq -y clang-4.0 lldb-4.0 libc++-dev libc++abi-dev
@@ -149,10 +167,10 @@ matrix:
         - export CC="clang-4.0"
         - export CXX="clang++-4.0"
         - $CXX --version
-        - ./configure --config=Linux-clang --everything --omit=PDF && source config.make && cat build/config/$POCO_CONFIG 
+        - ./configure --config=Linux64-clang --everything --omit=PDF
         - make -s -j2 && ./travis/Linux/runtests.sh
 
-    - env:    test="clang 5.0 amd64 (make) bundled"
+    - env:    test="5.0 x64 (make) bundled"
       compiler: clang
       script:
         - sudo apt-get install -qq -y clang-5.0 lldb-5.0 libc++-dev libc++abi-dev
@@ -160,33 +178,9 @@ matrix:
         - export CC="clang-5.0"
         - export CXX="clang++-5.0"
         - $CXX --version
-        - ./configure --config=Linux-clang --everything --omit=PDF && source config.make && cat build/config/$POCO_CONFIG 
+        - ./configure --config=Linux64-clang --everything --omit=PDF
         - make -s -j2 && ./travis/Linux/runtests.sh
 
-    - env:    test="clang 5.0 i386 (make) bundled"
-      compiler: clang
-      script:
-        - sudo apt-get install -qq -y clang-5.0 lldb-5.0 libc++-dev libc++abi-dev
-        - export CLANG_VERSTION="-5.0"
-        - export CC="clang-5.0"
-        - export CXX="clang++-5.0"
-        - $CXX --version
-        - ./configure --config=Linux32-clang --everything --omit=PDF,Data/ODBC,Data/PostgreSQL,Data/MySQL && source config.make && cat build/config/$POCO_CONFIG 
-        - make -s -j2 && export OSARCH=x86 && ./travis/Linux/runtests.sh
-
-    #- env:    test="clang 3.5.0 (make) unbundled"
-    #  ======================================= compiler error on generating debug info for auto return
-    # error: debug information for auto is not yet supported
-    # error: debug information for auto is not yet supported
-    # ** Creating dependency info for src/Timespan.cpp
-    # make[1]: *** [/home/travis/build/Kampbell/poco/CppUnit/obj/Linux/x86_64/debug_shared/TestRunner.o] Error 1   #  compiler: clang
-    #  =======================================
-    #  script:
-    #    - export CC="clang"
-    #    - export CXX="clang++"
-    #    - $CXX --version
-    #    - ./configure --config=Linux-clang --everything --omit=PDF --unbundled && make -s -j2 && ./travis/Linux/runtests.sh
-    
     #- env:    test="arm-linux-gnueabi-g++ (make)"
     #  compiler: gcc
     #  script:
@@ -195,7 +189,7 @@ matrix:
     #    - arm-linux-gnueabi-g++ -x c++ /dev/null -dM -E
     #    - ./configure --omit=PDF,Data/ODBC,Data/MySQL,Data/PostgreSQL,Crypto,NetSSL,PageCompiler && make -s -j2  CROSS_COMPILE=arm-linux-gnueabi- POCO_TARGET_OSARCH=armv7l
 
-    #- env:    test="clang (CMake)"
+    #- env:    test="(CMake)"
     #  compiler: clang
     #  script:
     #    - source ./travis/ignored.sh
@@ -215,7 +209,7 @@ matrix:
     #    - mkdir cmake-build 
     #    - cd cmake-build && cmake  -DENABLE_PDF=OFF -DENABLE_NETSSL=OFF -DENABLE_CRYPTO=OFF -DENABLE_TESTS=ON .. && make -s -j2 && cd ..
 
-    - env:    test="arm-linux-gnueabihf-g++ armv7 (CMake)"
+    - env:    test="arm-linux-gnueabihf-g++ (CMake)"
       compiler: gcc
       script:
         - sudo apt-get install -qq -y g++-arm-linux-gnueabi g++-arm-linux-gnueabihf
