@@ -295,7 +295,7 @@ Session Statement::session()
 
 void Statement::setTotalRowCount(const std::string& sql)
 {
-	std::size_t count;
+	UInt64 count;
 	session() << sql,
 		Poco::Data::Keywords::into(count),
 		Poco::Data::Keywords::now;
