@@ -39,8 +39,8 @@ namespace Poco {
     typedef unsigned int           UInt32;
     typedef signed long long       Int64;
     typedef unsigned long long     UInt64;
-    #define  int64(c) c ## LL
-    #define uint64(c) c ## ULL
+    #define  lit64(c) c ## LL
+    #define ulit64(c) c ## ULL
 
     #if defined(_WIN64)
         #define POCO_PTR_IS_64_BIT 1
@@ -69,14 +69,14 @@ namespace Poco {
         typedef unsigned long long         UInt64;
         typedef Int64                      IntPtr;
         typedef UInt64                     UIntPtr;
-        #define  int64(c) c ##  L
-        #define uint64(c) c ## UL
+        #define  lit64(c) c ##  L
+        #define ulit64(c) c ## UL
     #else
         #if defined(__LP64__)
             typedef long                   Int64;
             typedef unsigned long          UInt64;
-            #define  int64(c) c ##  L
-            #define uint64(c) c ## UL
+            #define  lit64(c) c ##  L
+            #define ulit64(c) c ## UL
 
             typedef Int64                  IntPtr;
             typedef UInt64                 UIntPtr;
@@ -85,8 +85,8 @@ namespace Poco {
         #else
             typedef long long              Int64;
             typedef unsigned long long     UInt64;
-            #define  int64(c) c ##  LL
-            #define uint64(c) c ## ULL
+            #define  lit64(c) c ##  LL
+            #define ulit64(c) c ## ULL
             typedef Int32                  IntPtr;
             typedef UInt32                 UIntPtr;
         #endif
@@ -109,8 +109,8 @@ namespace Poco {
     typedef unsigned long          UIntPtr;
     #define POCO_PTR_IS_64_BIT 1
     #define POCO_LONG_IS_64_BIT 1
-    #define  int64(c) c ##  L
-    #define uint64(c) c ## UL
+    #define  lit64(c) c ##  L
+    #define ulit64(c) c ## UL
 
 #elif defined(__HP_aCC)
     //
@@ -130,13 +130,13 @@ namespace Poco {
         #define POCO_LONG_IS_64_BIT 1
         typedef signed long        Int64;
         typedef unsigned long      UInt64;
-        #define  int64(c) c ##  L
-        #define uint64(c) c ## UL
+        #define  lit64(c) c ##  L
+        #define ulit64(c) c ## UL
     #else
         typedef signed long long   Int64;
         typedef unsigned long long UInt64;
-        #define  int64(c) c ##  LL
-        #define uint64(c) c ## ULL
+        #define  lit64(c) c ##  LL
+        #define ulit64(c) c ## ULL
     #endif
     #if defined(__LP64__)
         #define POCO_PTR_IS_64_BIT 1
@@ -166,13 +166,13 @@ namespace Poco {
         #define POCO_LONG_IS_64_BIT 1
         typedef signed long        Int64;
         typedef unsigned long      UInt64;
-        #define  int64(c) c ##  L
-        #define uint64(c) c ## UL
+        #define  lit64(c) c ##  L
+        #define ulit64(c) c ## UL
     #else
         typedef signed long long   Int64;
         typedef unsigned long long UInt64;
-        #define  int64(c) c ##  LL
-        #define uint64(c) c ## ULL
+        #define  lit64(c) c ##  LL
+        #define ulit64(c) c ## ULL
     #endif
 
 #elif defined(__IBMCPP__)
@@ -193,13 +193,13 @@ namespace Poco {
         #define POCO_LONG_IS_64_BIT 1
         typedef signed long        Int64;
         typedef unsigned long      UInt64;
-        #define  int64(c) c ##  L
-        #define uint64(c) c ## UL
+        #define  lit64(c) c ##  L
+        #define ulit64(c) c ## UL
     #else
         typedef signed long long   Int64;
         typedef unsigned long long UInt64;
-        #define  int64(c) c ##  LL
-        #define uint64(c) c ## ULL
+        #define  lit64(c) c ##  LL
+        #define ulit64(c) c ## ULL
     #endif
 
 #elif defined(__sgi)
@@ -212,13 +212,13 @@ namespace Poco {
         #define POCO_LONG_IS_64_BIT 1
         typedef Int64 IntPtr;
         typedef UInt64 UIntPtr;
-        #define  int64(c) c ##  L
-        #define uint64(c) c ## UL
+        #define  lit64(c) c ##  L
+        #define ulit64(c) c ## UL
     #else
         typedef Int32 IntPtr;
         typedef UInt32 UIntPtr;
-        #define  int64(c) c ##  LL
-        #define uint64(c) c ## ULL
+        #define  lit64(c) c ##  LL
+        #define ulit64(c) c ## ULL
     #endif
 
 #endif

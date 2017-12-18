@@ -1300,31 +1300,31 @@ void VarTest::testComparisonOperators()
 	assert ("2" != any1);
 	assert (any1 >  0);
 	assert (any1 >= 0);
-	assert (any1 >  int64(0));
-	assert (any1 >= int64(0));
+	assert (any1 >  lit64(0));
+	assert (any1 >= lit64(0));
 
-	assert (any1 == int64(1));
-	assert (any1 != int64(2));
-	assert (any1 <= int64(1));
-	assert (any1 >= int64(1));
-	assert (any1 <= int64(2));
-	assert (any1 <  int64(2));
+	assert (any1 == lit64(1));
+	assert (any1 != lit64(2));
+	assert (any1 <= lit64(1));
+	assert (any1 >= lit64(1));
+	assert (any1 <= lit64(2));
+	assert (any1 <  lit64(2));
 	assert (0   < any1);
 	assert (0   <= any1);
 
-	assert (int64(0)  <  any1);
-	assert (int64(0)  <= any1);
-	assert (uint64(0) <  any1);
-	assert (uint64(0) <= any1);
+	assert (lit64(0)  <  any1);
+	assert (lit64(0)  <= any1);
+	assert (ulit64(0) <  any1);
+	assert (ulit64(0) <= any1);
 
-	assert (int64(1) == any1);
-	assert (int64(2) != any1);
-	assert (int64(1) >= any1);
-	assert (int64(2) >= any1);
-	assert (int64(2) >  any1);
-	assert (int64(1) <= any1);
-	assert (int64(0) <  any1);
-	assert (int64(0) <= any1);
+	assert (lit64(1) == any1);
+	assert (lit64(2) != any1);
+	assert (lit64(1) >= any1);
+	assert (lit64(2) >= any1);
+	assert (lit64(2) >  any1);
+	assert (lit64(1) <= any1);
+	assert (lit64(0) <  any1);
+	assert (lit64(0) <= any1);
 
 	any1 = 0x31;
 	assert (any1 == '1');

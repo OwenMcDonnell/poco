@@ -31,11 +31,7 @@ static void getProp(const TypeInfo& dataTypes, SQLSMALLINT sqlType, size_t& val)
 	Poco::DynamicAny r;
 	if (dataTypes.tryGetInfo(sqlType, NM, r))
 	{
-#ifdef NOT_SUPPORTED_ANYMORE
-		long sz = r.convert<long>();
-#else
 		Poco::Int64 sz = r.convert<Poco::Int64>();
-#endif
 		// Postgres driver returns SQL_NO_TOTAL(-4) in some cases
 		if (sz >= 0)
 			val = static_cast<size_t>(sz);

@@ -196,17 +196,6 @@ public:
 	virtual bool extract(std::size_t pos, std::list<Poco::UInt64>& val);
 		/// Extracts an UInt64 list.
 
-#ifndef POCO_LONG_IS_64_BIT
-	virtual bool extract(std::size_t pos, std::vector<long>& val);
-		/// Extracts a long vector.
-
-	virtual bool extract(std::size_t pos, std::deque<long>& val);
-		/// Extracts a long deque.
-
-	virtual bool extract(std::size_t pos, std::list<long>& val);
-		/// Extracts a long list.
-#endif
-
 	virtual bool extract(std::size_t pos, std::vector<bool>& val);
 		/// Extracts a boolean vector.
 

@@ -204,23 +204,6 @@ public:
 	void prepare(std::size_t pos, const std::list<Poco::UInt64>& val);
 		/// Prepares an UInt64 list.
 
-#ifndef POCO_LONG_IS_64_BIT
-	void prepare(std::size_t pos, const long& val);
-		/// Prepares a long.
-
-	void prepare(std::size_t pos, const unsigned long& val);
-		/// Prepares an unsigned long.
-
-	void prepare(std::size_t pos, const std::vector<long>& val);
-		/// Prepares a long vector.
-
-	void prepare(std::size_t pos, const std::deque<long>& val);
-		/// Prepares a long deque.
-
-	void prepare(std::size_t pos, const std::list<long>& val);
-		/// Prepares a long list.
-#endif
-
 	void prepare(std::size_t pos, const bool& val);
 		/// Prepares a boolean.
 
@@ -876,37 +859,6 @@ inline void Preparator::prepare(std::size_t pos, const std::list<Poco::UInt64>& 
 	prepareFixedSize<Poco::UInt64>(pos, SQL_C_UBIGINT, val.size());
 }
 
-
-#ifndef POCO_LONG_IS_64_BIT
-inline void Preparator::prepare(std::size_t pos, const long&)
-{
-	prepareFixedSize<long>(pos, SQL_C_SLONG);
-}
-
-
-inline void Preparator::prepare(std::size_t pos, const unsigned long&)
-{
-	prepareFixedSize<long>(pos, SQL_C_SLONG);
-}
-
-
-inline void Preparator::prepare(std::size_t pos, const std::vector<long>& val)
-{
-	prepareFixedSize<long>(pos, SQL_C_SLONG, val.size());
-}
-
-
-inline void Preparator::prepare(std::size_t pos, const std::deque<long>& val)
-{
-	prepareFixedSize<long>(pos, SQL_C_SLONG, val.size());
-}
-
-
-inline void Preparator::prepare(std::size_t pos, const std::list<long>& val)
-{
-	prepareFixedSize<long>(pos, SQL_C_SLONG, val.size());
-}
-#endif
 
 
 inline void Preparator::prepare(std::size_t pos, const bool&)
