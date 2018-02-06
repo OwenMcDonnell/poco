@@ -347,7 +347,8 @@ before_build:
 
 after_build:
   - ps: |
-      if ($lastexitcode -ne 0)  { exit $lastexitcode }
+      Write-Host -ForegroundColor Yellow 'lastexitcode=' $lastexitcode;
+      Write-Host -ForegroundColor Yellow '$?=' $?;
       
       $line='-------------------------------------------------------------------------------------';
       $find='C:\Cygwin\bin\find.exe';
