@@ -64,16 +64,6 @@ public:
 	virtual void bind(std::size_t pos, const Poco::UInt64& val, Direction dir, const WhenNullCb& nullCb);
 		/// Binds an UInt64.
 
-#ifndef POCO_LONG_IS_64_BIT
-
-	virtual void bind(std::size_t pos, const long& val, Direction dir, const WhenNullCb& nullCb);
-		/// Binds a long.
-
-	virtual void bind(std::size_t pos, const unsigned long& val, Direction dir, const WhenNullCb& nullCb);
-		/// Binds an unsigned long.
-
-#endif // POCO_LONG_IS_64_BIT
-
 	virtual void bind(std::size_t pos, const bool& val, Direction dir, const WhenNullCb& nullCb);
 		/// Binds a boolean.
 

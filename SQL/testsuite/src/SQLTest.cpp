@@ -346,10 +346,8 @@ void SQLTest::writeToCLOB(BinaryWriter& writer)
 	writer << (unsigned short) 50000;
 	writer << -123456;
 	writer << (unsigned) 123456;
-#ifndef POCO_LONG_IS_64_BIT
-	writer << (long) -1234567890;
-	writer << (unsigned long) 1234567890;
-#endif // POCO_LONG_IS_64_BIT
+	writer << lit64(-1234567890);
+	writer << ulit64(1234567890);
 	writer << (Int64) -1234567890;
 	writer << (UInt64) 1234567890;
 
@@ -405,15 +403,13 @@ void SQLTest::readFromCLOB(BinaryReader& reader)
 	unsigned uintv = 0;
 	reader >> uintv;
 	assert (uintv == 123456);
-#ifndef POCO_LONG_IS_64_BIT
-	long longv = 0;
+	Int64 longv = 0;
 	reader >> longv;
 	assert (longv == -1234567890);
 
-	unsigned long ulongv = 0;
+	UInt64 ulongv = 0;
 	reader >> ulongv;
 	assert (ulongv == 1234567890);
-#endif // POCO_LONG_IS_64_BIT
 	Int64 int64v = 0;
 	reader >> int64v;
 	assert (int64v == -1234567890);

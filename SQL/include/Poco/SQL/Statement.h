@@ -270,13 +270,6 @@ public:
 	Statement& operator , (Poco::Int32 value);
 		/// Adds the value to the list of values to be supplied to the SQL string formatting function.
 
-#ifndef POCO_LONG_IS_64_BIT
-	Statement& operator , (long value);
-		/// Adds the value to the list of values to be supplied to the SQL string formatting function.
-
-	Statement& operator , (unsigned long value);
-		/// Adds the value to the list of values to be supplied to the SQL string formatting function.
-#endif
 	Statement& operator , (Poco::UInt64 value);
 		/// Adds the value to the list of values to be supplied to the SQL string formatting function.
 
@@ -632,20 +625,6 @@ inline Statement& Statement::operator , (Poco::Int32 value)
 {
 	return commaPODImpl(value);
 }
-
-
-#ifndef POCO_LONG_IS_64_BIT
-inline Statement& Statement::operator , (long value)
-{
-	return commaPODImpl(value);
-}
-
-
-inline Statement& Statement::operator , (unsigned long value)
-{
-	return commaPODImpl(value);
-}
-#endif
 
 
 inline Statement& Statement::operator , (Poco::UInt64 value)

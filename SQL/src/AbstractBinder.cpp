@@ -180,26 +180,6 @@ void AbstractBinder::bind(std::size_t pos, const std::list<Poco::UInt64>& val, D
 }
 
 
-#ifndef POCO_LONG_IS_64_BIT
-void AbstractBinder::bind(std::size_t pos, const std::vector<long>& val, Direction dir)
-{
-	throw NotImplementedException("std::vector binder must be implemented.");
-}
-
-
-void AbstractBinder::bind(std::size_t pos, const std::deque<long>& val, Direction dir)
-{
-	throw NotImplementedException("std::deque binder must be implemented.");
-}
-
-
-void AbstractBinder::bind(std::size_t pos, const std::list<long>& val, Direction dir)
-{
-	throw NotImplementedException("std::list binder must be implemented.");
-}
-#endif
-
-
 void AbstractBinder::bind(std::size_t pos, const std::vector<bool>& val, Direction dir)
 {
 	throw NotImplementedException("std::vector binder must be implemented.");
@@ -464,10 +444,8 @@ void AbstractBinder::bind(std::size_t pos, const Any& val, Direction dir, const 
 		bind(pos, RefAnyCast<BLOB>(val), dir, nullCb);
 	else if(type == typeid(void))
 		bind(pos, NULL_GENERIC, dir, type);
-#ifndef POCO_LONG_IS_64_BIT
 	else if(type == typeid(long))
-		bind(pos, RefAnyCast<long>(val), dir, nullCb);
-#endif
+		throw UnknownTypeException(std::string("NO SUPPORTED ANYMORE: ") + std::string(val.type().name()));
 	else
 		throw UnknownTypeException(std::string(val.type().name()));
 }
@@ -519,10 +497,8 @@ void AbstractBinder::bind(std::size_t pos, const Poco::Dynamic::Var& val, Direct
 		bind(pos, val.extract<NullData>(), dir, type);
 	else if (type == typeid(NullType))
 		bind(pos, static_cast<NullData>(val.extract<NullType>()), dir, type);
-#ifndef POCO_LONG_IS_64_BIT
 	else if(type == typeid(long))
-		bind(pos, val.extract<long>(), dir, nullCb);
-#endif
+		throw UnknownTypeException(std::string("NO SUPPORTED ANYMORE: ") + std::string(val.type().name()));
 	else
 		throw UnknownTypeException(std::string(val.type().name()));
 }

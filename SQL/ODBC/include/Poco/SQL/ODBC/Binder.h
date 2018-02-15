@@ -190,23 +190,6 @@ public:
 	void bind(std::size_t pos, const std::list<Poco::UInt64>& val, Direction dir);
 		/// Binds an UInt64 list.
 
-#ifndef POCO_LONG_IS_64_BIT
-	void bind(std::size_t pos, const long& val, Direction dir, const WhenNullCb& nullCb);
-		/// Binds a long.
-
-	void bind(std::size_t pos, const unsigned long& val, Direction dir, const WhenNullCb& nullCb);
-		/// Binds an unsigned long.
-
-	void bind(std::size_t pos, const std::vector<long>& val, Direction dir);
-		/// Binds a long vector.
-
-	void bind(std::size_t pos, const std::deque<long>& val, Direction dir);
-		/// Binds a long deque.
-
-	void bind(std::size_t pos, const std::list<long>& val, Direction dir);
-		/// Binds a long list.
-#endif
-
 	void bind(std::size_t pos, const bool& val, Direction dir, const WhenNullCb& nullCb);
 		/// Binds a boolean.
 
@@ -1246,37 +1229,6 @@ inline void Binder::bind(std::size_t pos, const std::list<Poco::UInt64>& val, Di
 	bindImplContainer(pos, val, SQL_C_UBIGINT, dir);
 }
 
-
-#ifndef POCO_LONG_IS_64_BIT
-inline void Binder::bind(std::size_t pos, const long& val, Direction dir, const WhenNullCb& nullCb)
-{
-	bindImpl(pos, val, SQL_C_SLONG, dir, nullCb);
-}
-
-
-inline void Binder::bind(std::size_t pos, const unsigned long& val, Direction dir, const WhenNullCb& nullCb)
-{
-	bindImpl(pos, val, SQL_C_SLONG, dir, nullCb);
-}
-
-
-inline void Binder::bind(std::size_t pos, const std::vector<long>& val, Direction dir)
-{
-	bindImplVec(pos, val, SQL_C_SLONG, dir);
-}
-
-
-inline void Binder::bind(std::size_t pos, const std::deque<long>& val, Direction dir)
-{
-	bindImplContainer(pos, val, SQL_C_SLONG, dir);
-}
-
-
-inline void Binder::bind(std::size_t pos, const std::list<long>& val, Direction dir)
-{
-	bindImplContainer(pos, val, SQL_C_SLONG, dir);
-}
-#endif
 
 
 inline void Binder::bind(std::size_t pos, const float& val, Direction dir, const WhenNullCb& nullCb)

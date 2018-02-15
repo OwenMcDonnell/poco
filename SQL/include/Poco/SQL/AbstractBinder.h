@@ -227,23 +227,6 @@ public:
 	virtual void bind(std::size_t pos, const std::list<Poco::UInt64>& val, Direction dir = PD_IN);
 		/// Binds an UInt64 list.
 
-#ifndef POCO_LONG_IS_64_BIT
-	virtual void bind(std::size_t pos, const long& val, Direction dir = PD_IN, const WhenNullCb& nullCb = WhenNullCb()) = 0;
-		/// Binds a long.
-
-	virtual void bind(std::size_t pos, const unsigned long& val, Direction dir = PD_IN, const WhenNullCb& nullCb = WhenNullCb()) = 0;
-		/// Binds an unsiged long.
-
-	virtual void bind(std::size_t pos, const std::vector<long>& val, Direction dir = PD_IN);
-		/// Binds a long vector.
-
-	virtual void bind(std::size_t pos, const std::deque<long>& val, Direction dir = PD_IN);
-		/// Binds a long deque.
-
-	virtual void bind(std::size_t pos, const std::list<long>& val, Direction dir = PD_IN);
-		/// Binds a long list.
-#endif
-
 	virtual void bind(std::size_t pos, const bool& val, Direction dir = PD_IN, const WhenNullCb& nullCb = WhenNullCb()) = 0;
 		/// Binds a boolean.
 
