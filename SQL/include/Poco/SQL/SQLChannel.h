@@ -178,9 +178,9 @@ private:
 	
 	// members for log entry cache (needed for async mode)
 	std::string _source;
-	long        _pid;
+	Int64       _pid;
 	std::string _thread;
-	long        _tid;
+	Int64       _tid;
 	int         _priority;
 	std::string _text;
 	DateTime    _dateTime;
