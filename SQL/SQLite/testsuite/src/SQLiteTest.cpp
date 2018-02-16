@@ -721,7 +721,7 @@ void SQLiteTest::testInsertSingleBulk()
 	Session tmp (Poco::SQL::SQLite::Connector::KEY, "dummy.db");
 	tmp << "DROP TABLE IF EXISTS Strings", now;
 	tmp << "CREATE TABLE IF NOT EXISTS Strings (str INTEGER(10))", now;
-	std::size_t x = 0;
+	UInt32 x = 0;
 	Statement stmt((tmp << "INSERT INTO Strings VALUES(:str)", use(x)));
 
 	for (std::size_t i = 0; x < 100; ++x)
