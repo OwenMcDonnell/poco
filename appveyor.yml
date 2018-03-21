@@ -1,7 +1,7 @@
 version: build {branch}-{build}
 
 cache:
-  - C:\mysql-5.7.21-win32
+  #- C:\mysql-5.7.21-win32
   - C:\ProgramData\chocolatey
   - C:\OpenSSL-Win32
   - C:\OpenSSL-Win64
